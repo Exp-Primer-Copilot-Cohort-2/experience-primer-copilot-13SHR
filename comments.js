@@ -1,43 +1,18 @@
 // Create Web Server
+// Use Node.js to create a web server that listens for requests on port 3000 and responds with a simple message. 
+// The server should respond to any request with a simple message, such as "Hello, World!".
+
+// Import the http module
 const http = require('http');
-const url = require('url');
-const fs = require('fs');
-const path = require('path');
 
+// Create a server object
 const server = http.createServer((req, res) => {
-    const parsedUrl = url.parse(req.url, true);
-    const pathname = parsedUrl.pathname;
-    const method = req.method;
-
-    if (pathname === '/' && method === 'GET') {
-        fs.readFile(path.join(__dirname, 'comments.json'), 'utf8', (err, data) => {
-            if (err) {
-                res.writeHead(404, { 'Content-Type': 'text/html' });
-                res.end('<h1>404 Not Found</h1>');
-            } else {
-                const comments = JSON.parse(data);
-                res.writeHead(200, { 'Content-Type': 'text/html' });
-                res.end(`
-                    <h1>Comments</h1>
-                    <ul>
-                        ${comments.map(comment => `<li>${comment.name}: ${comment.comment}</li>`).join('')}
-                    </ul>
-                `);
-            }
-        });
-    } else if (pathname === '/api/comments' && method === 'GET') {
-        fs.readFile(path.join(__dirname, 'comments.json'), 'utf8', (err, data) => {
-            if (err) {
-                res.writeHead(404, { 'Content-Type': 'text/html' });
-                res.end('<h1>404 Not Found</h1>');
-            } else {
-                const comments = JSON.parse(data);
-                res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify(comments));
-            }
-        });
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('<h1>404 Not Found</h1>');
-    }
+  res.write('Hello, World!');
+  res.end();
 });
+
+// Listen for incoming requests
+server.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+// The server is now running on port 3000 and will respond to any request with the message "Hello, World!".
