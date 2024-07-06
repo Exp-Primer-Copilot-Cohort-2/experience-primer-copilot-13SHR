@@ -41,8 +41,3 @@ const server = http.createServer((req, res) => {
         res.end('<h1>404 Not Found</h1>');
     }
 });
-
-server.listen(3000, () => {
-    console.log('Server is listening on port 3000');
-});
-// Create a Web Server using the
