@@ -1,11 +1,4 @@
 // Create Web Server
-// Create a Web Server using the http module
-// This Web Server should listen to port 3000
-// When a user visits the main page (http://localhost:3000/), it should display a list of comments from the comments.json file
-// When a user visits the page /api/comments, it should return the comments in JSON format
-// When a user visits a page that does not exist, it should display a 404 page
-
-// Create Web Server
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
